@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(routes)
 
 app.get('/', (req, res) => {
-    console.log("get endpoint at index page")
+    console.log("get endpoint at index page");
 })
 
 app.listen(3000, () => {
