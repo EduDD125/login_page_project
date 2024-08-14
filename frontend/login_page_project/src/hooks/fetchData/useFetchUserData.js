@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import apliClient from './../../axios/apiClient';
+import {apliClient} from './../../axios/apiClient';
 
 export default function useFetchUserData({email, password}) {
     useEffect(() => {
