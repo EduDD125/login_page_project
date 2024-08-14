@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+import useSendLoginData from "../../hooks/sendData/useSendLoginData";
 
 export default function Login() {
     const [email, setEmail] = useState();
@@ -8,8 +10,7 @@ export default function Login() {
     function handleSubmition(event) {
         event.preventDefault();
 
-        if (email && password)
-            console.log(email + " | " + password);
+        if (email && password) useSendLoginData(email,password)
         else console.log("campos vazios")
     }
 
