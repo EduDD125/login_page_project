@@ -5,13 +5,6 @@ const { stringify } = require('querystring');
 
 const routes = express.Router(); 
 
-const id = 1;
-const users = [{
-    id: id,
-    nome:'User',
-    email:'user@gmail.com',
-    password:'123456'
-}]
 
 routes.post('/login', (req, res) => {
     const {email, password} = req.body
