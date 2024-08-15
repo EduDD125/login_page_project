@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import useSendLoginData from "../../hooks/sendData/useSendLoginData";
 
@@ -7,7 +6,7 @@ export default function Login() {
     const [password, setPassword] = useState();
 
     console.log("inicio")
-    function handleSubmition(event) {
+    function HandleSubmition(event) {
         event.preventDefault();
 
         if (email && password) useSendLoginData(email,password)
@@ -25,7 +24,7 @@ export default function Login() {
                         <input type="password" name="password" placeholder="Digite sua senha"
                         onChange={(e) => {setPassword(e.target.value)}} required></input>
                         <button type="submit" className="btn-login"
-                        onClick={(e) => handleSubmition(e)} >Enviar</button>
+                        onClick={(e) => HandleSubmition(e)} >Enviar</button>
                     </form>
                 </div>
             </header>

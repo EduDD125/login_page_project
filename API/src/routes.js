@@ -1,9 +1,13 @@
 const express = require('express');
-const fs = require('fs')
+const fs = require('fs');
+const path = require('path');
+const { stringify } = require('querystring');
 
 const routes = express.Router(); 
 
+const id = 1;
 const users = [{
+    id: id,
     nome:'User',
     email:'user@gmail.com',
     password:'123456'
@@ -12,39 +16,47 @@ const users = [{
 routes.post('/login', (req, res) => {
     const {email, password} = req.body
 
-    const user = users.find(user => user.email == email && user.password == password)
-    
-    if(user) return res.status(200).json(user);
-    else return res.status(401).json({message: 'Credencial Inválida'});
-    
+    fs.readFile(path.join(__dirname,'../users.json'), 'utf8', (err, data) => {
+        if(err){
+            console.log(err)
+            return res.status(500).json({message: 'Erro ao ler arquivo'});
+        }
+
+        const savedUser = JSON.parse(data);
+        console.log(data)
+
+        if(savedUser.email == email && savedUser.password == password) {
+            return res.status(200).json(savedUser);
+        }
+        return res.status(401).json({message: "Credenciais inválidas!"});
+    })
 })
 
 
 routes.post("/create", (req, res) => {
     const {name, email, password} = req.body;
-    const body = {
+    const newUser = {
         name: name,
         email: email,
         password: password
     };
-
-    if (true) { // fazer lógica de criação de usuários únicos
-
-        fs.writeFile('users.json', JSON.stringify(body), (err) => {
-            if(err) {
-                res.status(500).json({
-                    status: 500,
-                    error: err.message || 'Internal server error'
-                });
-            } else {
-                res.status(201).json({
-                    status: 201,
-                    message: `User ${name} created`
-                });
-                console.log('The file has been saved!');
-            }
-        })
-    }
+    console.log("########################")
+    if (!name || !email || !password ) return res.status(400).json({message:`Parametros de criação estão alsentes`})  
+    fs.writeFile('users.json', JSON.stringify(newUser), (err) => {
+        if(err) {
+            res.status(500).json({
+                status: 500,
+                error: err.message || 'Internal server error'
+            });
+        } 
+        else {
+            res.status(201).json({
+                message: `User ${name} created`
+            });
+            console.log('The file has been saved!');
+            console.log(newUser);
+        }
+    })
 })
 
 module.exports = routes;
