@@ -4,13 +4,12 @@ import useSendLoginData from "../../hooks/sendData/useSendLoginData";
 export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const {sendLogin} = useSendLoginData();
 
-    console.log("inicio")
-    function HandleSubmition(event) {
-        event.preventDefault();
-
-        if (email && password) useSendLoginData(email,password)
-        else console.log("campos vazios")
+    function HandleSubmition(e) {
+        e.preventDefault()
+        const response = sendLogin(email,password);
+        console.log(response);
     }
 
     return(
@@ -26,7 +25,7 @@ export default function Login() {
                         <button type="submit" className="btn-login"
                         onClick={(e) => HandleSubmition(e)} >Enviar</button>
                     </form>
-                </div>
+                </div> 
             </header>
         </div>
     );
