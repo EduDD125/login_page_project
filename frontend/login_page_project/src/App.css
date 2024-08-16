@@ -1,3 +1,8 @@
+.page-container {
+  display: flex;
+  flex-direction: row;
+}
+
 body {
   background-color: #9f9da7;
   font-size: 1.6rem;
@@ -30,7 +35,7 @@ a:active:hover {
   transition: all 0.2s ease;
 }
 
-.login-form-wrap {
+.form-wrap {
   background-color: #fff;
   width: 70%;
   max-width: 400px;
@@ -41,7 +46,7 @@ a:active:hover {
   box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
 }
 
-.login-form {
+.form {
   padding: 0 60px;
 }
 
@@ -76,7 +81,7 @@ input[type="email"]:focus {
   border-color: #3ca9e2;
 }
 
-.btn-login {
+.btn-submitting {
   border: none;
   display: block;
   background-color: #3ca9e2;
@@ -96,7 +101,7 @@ input[type="email"]:focus {
   width: 100%;
   padding: 20px;
 }
-.btn-login:hover {
+.btn-submitting:hover {
   background-color: #329dd5;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;

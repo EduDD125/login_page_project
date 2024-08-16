@@ -1,0 +1,14 @@
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    padding: 15px;
+    background-color: black;
+}
+
+.navbar-button {
+    background-color: green;
+    color: white;
+    size: 16px;
+    padding: 10px;
+}

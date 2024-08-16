@@ -10,12 +10,12 @@ export default function useSendLoginData() {
             password: password
         })
         .then(response => {
-            console.log("User data sended sucessfully:", response.data);
+            console.log("User data sended sucessfully:", response);
             return response;
         })
         .catch(error => {
-            console.log(email + "  " + password)
             console.log("There was a error sending user data:", error);
+            throw error;
         })
     };
 
